@@ -1,0 +1,10 @@
+---
+collections:
+  - name: community.general
+  - name: ansible.posix
+  - name: middleware_automation.infinispan
+  - name: middleware_automation.keycloak
+  - name: middleware_automation.wildfly
+  - name: middleware_automation.jws
+  - name: middleware_automation.redhat_csp_download
+  - name: middleware_automation.jcliff
