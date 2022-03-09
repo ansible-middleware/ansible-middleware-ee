@@ -30,7 +30,7 @@ jobs:
           DOCKER_BUILDKIT: 1
         run: |
           docker rmi quay.io/ansible-middleware/ansible-middleware-ee:latest || true
-          ansible-builder build -v3 -c . -t quay.io/ansible-middleware/ansible-middleware-ee --container-runtime=docker --tag=quay.io/ansible-middleware/ansible-middleware-ee:${{ steps.get_version.outputs.TAG_VERSION }}
+          ansible-builder build -v3 -c . --container-runtime=docker --tag=quay.io/ansible-middleware/ansible-middleware-ee:${{ steps.get_version.outputs.TAG_VERSION }}
 
       - name: Apply latest tag
         run: |
