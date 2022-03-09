@@ -34,7 +34,7 @@ jobs:
 
       - name: Apply latest tag
         run: |
-         docker tag quay.io/ansible-middleware/ansible-middleware-ee:${{ github.event.release.tag_name }} quay.io/ansible/awx-ee:latest
+         docker tag quay.io/ansible-middleware/ansible-middleware-ee:${{ github.event.release.tag_name }} quay.io/ansible-middleware/ansible-middleware-ee:latest
 
       - name: Push images
         run: |
