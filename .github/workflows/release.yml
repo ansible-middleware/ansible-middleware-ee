@@ -9,7 +9,6 @@ on:
 jobs:
   release:
     runs-on: ubuntu-20.04
-    name: Release
     steps:
       - uses: actions/checkout@v2
 

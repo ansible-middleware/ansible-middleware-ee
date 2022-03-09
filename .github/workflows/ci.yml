@@ -12,7 +12,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-20.04
-    name: Podman
     steps:
       - uses: actions/checkout@v2
 
