@@ -38,7 +38,7 @@ jobs:
 
       - name: Push images
         run: |
-         echo "${{ secrets.QUAY_ROBOT_TOKEN }}" | docker login quay.io -u ansible-middleware+foo --password-stdin
+         echo "${{ secrets.QUAY_ROBOT_TOKEN }}" | docker login quay.io -u="ansible-middleware+foo" --password-stdin
          docker push quay.io/ansible-middleware/ansible-middleware-ee:${{ steps.get_version.outputs.TAG_VERSION }}
          docker push quay.io/ansible-middleware/ansible-middleware-ee:latest
 
