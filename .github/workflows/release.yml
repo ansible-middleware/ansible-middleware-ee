@@ -42,7 +42,7 @@ jobs:
           docker push quay.io/ansible-middleware/ansible-middleware-ee:${{ steps.get_version.outputs.TAG_VERSION }}
           docker push quay.io/ansible-middleware/ansible-middleware-ee:latest
 
-      - name: Run ansible-navigator
+      - name: Run ansible-navigator with pulled image
         run: |
           cd test/
           pip install ansible-core ansible-navigator

@@ -27,10 +27,10 @@ jobs:
       - name: Build EE with Docker
         run: |
           docker rmi quay.io/ansible-middleware/ansible-middleware-ee:latest || true
-          ansible-builder build -v3 -c . -t quay.io/ansible-middleware/ansible-middleware-ee:test --pull-policy never --container-runtime=docker -mstdout
+          ansible-builder build -v3 -c . -t quay.io/ansible-middleware/ansible-middleware-ee:test --container-runtime=docker
 
-      - name: Run ansible-navigator
+      - name: Run ansible-navigator with local image
         run: |
           cd test/
           pip install ansible-core ansible-navigator
-          ansible-navigator run keycloak.yml -i inventory --eei quay.io/ansible-middleware/ansible-middleware-ee:test -mstdout
+          ansible-navigator run keycloak.yml -i inventory --pull-policy never --eei quay.io/ansible-middleware/ansible-middleware-ee:test -mstdout
