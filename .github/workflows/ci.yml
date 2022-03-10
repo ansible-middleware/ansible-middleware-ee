@@ -24,7 +24,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Build EE with Podman
+      - name: Build EE with Docker
         run: |
           docker rmi quay.io/ansible-middleware/ansible-middleware-ee:latest || true
           ansible-builder build -v3 -c . -t quay.io/ansible-middleware/ansible-middleware-ee:test --container-runtime=docker
@@ -32,4 +32,5 @@ jobs:
       - name: Run ansible-navigator
         run: |
           cd test/
+          pip install ansible-core ansible-navigator
           ansible-navigator run keycloak.yml -i inventory --eei quay.io/ansible-middleware/ansible-middleware-ee:test -mstdout

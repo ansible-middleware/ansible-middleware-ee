@@ -45,6 +45,7 @@ jobs:
       - name: Run ansible-navigator
         run: |
           cd test/
+          pip install ansible-core ansible-navigator
           ansible-navigator run keycloak.yml -i inventory --eei quay.io/ansible-middleware/ansible-middleware-ee:latest -mstdout
 
       - name: Publish Release
