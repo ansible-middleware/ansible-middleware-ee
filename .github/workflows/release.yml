@@ -34,13 +34,18 @@ jobs:
 
       - name: Apply latest tag
         run: |
-         docker tag quay.io/ansible-middleware/ansible-middleware-ee:${{ steps.get_version.outputs.TAG_VERSION }} quay.io/ansible-middleware/ansible-middleware-ee:latest
+          docker tag quay.io/ansible-middleware/ansible-middleware-ee:${{ steps.get_version.outputs.TAG_VERSION }} quay.io/ansible-middleware/ansible-middleware-ee:latest
 
       - name: Push images
         run: |
-         echo "${{ secrets.QUAY_ROBOT_TOKEN }}" | docker login quay.io -u="ansible-middleware+foo" --password-stdin
-         docker push quay.io/ansible-middleware/ansible-middleware-ee:${{ steps.get_version.outputs.TAG_VERSION }}
-         docker push quay.io/ansible-middleware/ansible-middleware-ee:latest
+          echo "${{ secrets.QUAY_ROBOT_TOKEN }}" | docker login quay.io -u="ansible-middleware+foo" --password-stdin
+          docker push quay.io/ansible-middleware/ansible-middleware-ee:${{ steps.get_version.outputs.TAG_VERSION }}
+          docker push quay.io/ansible-middleware/ansible-middleware-ee:latest
+
+      - name: Run ansible-navigator
+        run: |
+          cd test/
+          ansible-navigator run keycloak.yml -i inventory --eei quay.io/ansible-middleware/ansible-middleware-ee:latest -mstdout
 
       - name: Publish Release
         uses: softprops/action-gh-release@v1

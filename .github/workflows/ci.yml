@@ -27,4 +27,9 @@ jobs:
       - name: Build EE with Podman
         run: |
           docker rmi quay.io/ansible-middleware/ansible-middleware-ee:latest || true
-          ansible-builder build -v3 -c . -t quay.io/ansible-middleware/ansible-middleware-ee --container-runtime=docker
+          ansible-builder build -v3 -c . -t quay.io/ansible-middleware/ansible-middleware-ee:test --container-runtime=docker
+
+      - name: Run ansible-navigator
+        run: |
+          cd test/
+          ansible-navigator run keycloak.yml -i inventory --eei quay.io/ansible-middleware/ansible-middleware-ee:test -mstdout
