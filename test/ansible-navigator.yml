@@ -48,7 +48,7 @@ ansible-navigator:
 #         KEY2: VALUE2
 #         KEY3: VALUE3
     image: quay.io/ansible-middleware/ansible-middleware-ee:latest
-    pull-policy: always
+    pull-policy: tag
 #     pull:
 #       arguments:
 #         - "--tls-verify=false"
