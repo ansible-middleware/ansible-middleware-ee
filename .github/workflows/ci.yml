@@ -27,7 +27,7 @@ jobs:
       - name: Build EE with Docker
         run: |
           docker rmi quay.io/ansible-middleware/ansible-middleware-ee:latest || true
-          ansible-builder build -v3 -c . -t quay.io/ansible-middleware/ansible-middleware-ee:test --container-runtime=docker
+          ansible-builder build -v3 -c . -t quay.io/ansible-middleware/ansible-middleware-ee:test --pull-policy never --container-runtime=docker -mstdout
 
       - name: Run ansible-navigator
         run: |
