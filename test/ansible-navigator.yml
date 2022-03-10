@@ -6,15 +6,13 @@ ansible-navigator:
     playbook: test.yml
 
   execution-environment:
-    container-engine: docker
+    container-engine: podman
     enabled: True
     image: quay.io/ansible-middleware/ansible-middleware-ee:latest
     pull-policy: always
 
   logging:
     level: debug
-
-  mode: stdout
 
   playbook-artifact:
     enable: False

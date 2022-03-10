@@ -21,16 +21,17 @@ jobs:
 
       - name: Install dependencies
         run: |
+          sudo apt-get update
+          sudo apt-get -y install podman
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install ansible-core ansible-navigator[ansible-core]
 
-      - name: Build EE with Docker
+      - name: Build EE with Podman
         run: |
-          docker rmi quay.io/ansible-middleware/ansible-middleware-ee:latest || true
-          ansible-builder build -v3 -c . -t quay.io/ansible-middleware/ansible-middleware-ee:test --container-runtime=docker
+          ansible-builder build -v3 -c . -t ansible-middleware-ee:test --container-runtime=podman
 
       - name: Run ansible-navigator with local image
         run: |
-          cd test/
-          pip install ansible-core ansible-navigator
-          ansible-navigator run keycloak.yml -i inventory --pull-policy never --eei quay.io/ansible-middleware/ansible-middleware-ee:test -mstdout
+          ansible-navigator run keycloak.yml -i inventory --pull-policy never --eei ansible-middleware-ee:test -m stdout
+        working-directory: test
