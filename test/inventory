@@ -1,0 +1,8 @@
+[keycloak]
+keycloak-0
+
+[wildfly]
+wildfly-0
+
+[infinispan]
+infinispan-0
