@@ -7,6 +7,10 @@ __pycache__/
 *.so
 
 build/
+_build/
+
+Dockerfile
+Containerfile
 
 # Distribution / packaging
 .Python
