@@ -7,9 +7,6 @@
     - name: Include keycloak role
       ansible.builtin.include_role:
         name: middleware_automation.keycloak.keycloak
-        tasks_from: "{{ item }}"
-      loop:
-         - prereqs.yml
-         - install.yml
+        tasks_from: prereqs.yml
       vars:
         keycloak_admin_password: "changeme"
