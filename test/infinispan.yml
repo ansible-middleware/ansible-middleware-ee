@@ -1,0 +1,17 @@
+---
+- name: Playbook for Infinispan Hosts
+  hosts: infinispan
+  collections:
+    - middleware_automation.infinispan
+  tasks:
+    - name: Include infinispan role
+      ansible.builtin.include_role:
+        name: middleware_automation.infinispan.infinispan
+        tasks_from: "{{ item }}"
+      loop:
+         - prereqs.yml
+         - install.yml
+      vars:
+        supervisor_password: "itsme"
+        infinispan_users:
+          - { name: 'testuser', password: 'test', roles: 'observer' }

@@ -12,7 +12,7 @@ ansible-navigator:
     pull-policy: always
 
   logging:
-    level: debug
+    level: info
 
   playbook-artifact:
     enable: False

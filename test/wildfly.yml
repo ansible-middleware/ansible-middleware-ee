@@ -1,0 +1,13 @@
+---
+- name: Playbook for Wildfly Hosts
+  hosts: wildfly
+  collections:
+    - middleware_automation.wildfly
+  tasks:
+    - name: Include wildfly role
+      ansible.builtin.include_role:
+        name: middleware_automation.wildfly.wildfly_install
+      vars:
+        wildfly_home: '/opt/wildfly/wildfly-26.0.0.Final'
+        wildfly_user: 'wildfly'
+        wildfly_group: "{{ wildfly_user }}"

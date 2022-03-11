@@ -3,10 +3,13 @@
   hosts: keycloak
   collections:
     - middleware_automation.keycloak
-    - containers.podman
   tasks:
     - name: Include keycloak role
       ansible.builtin.include_role:
         name: middleware_automation.keycloak.keycloak
+        tasks_from: "{{ item }}"
+      loop:
+         - prereqs.yml
+         - install.yml
       vars:
         keycloak_admin_password: "changeme"

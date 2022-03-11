@@ -22,31 +22,30 @@ jobs:
 
       - name: Install dependencies
         run: |
+          sudo apt-get update
+          sudo apt-get -y install podman
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install ansible-core ansible-navigator[ansible-core]
 
       - name: Build image
-        env:
-          DOCKER_BUILDKIT: 1
         run: |
-          docker rmi quay.io/ansible-middleware/ansible-middleware-ee:latest || true
-          ansible-builder build -v3 -c . --container-runtime=docker --tag=quay.io/ansible-middleware/ansible-middleware-ee:${{ steps.get_version.outputs.TAG_VERSION }}
+          ansible-builder build -v3 -c . --container-runtime=podman --tag=quay.io/ansible-middleware/ansible-middleware-ee:${{ steps.get_version.outputs.TAG_VERSION }}
 
       - name: Apply latest tag
         run: |
-          docker tag quay.io/ansible-middleware/ansible-middleware-ee:${{ steps.get_version.outputs.TAG_VERSION }} quay.io/ansible-middleware/ansible-middleware-ee:latest
+          podman tag quay.io/ansible-middleware/ansible-middleware-ee:${{ steps.get_version.outputs.TAG_VERSION }} quay.io/ansible-middleware/ansible-middleware-ee:latest
 
       - name: Push images
         run: |
-          echo "${{ secrets.QUAY_ROBOT_TOKEN }}" | docker login quay.io -u="ansible-middleware+foo" --password-stdin
-          docker push quay.io/ansible-middleware/ansible-middleware-ee:${{ steps.get_version.outputs.TAG_VERSION }}
-          docker push quay.io/ansible-middleware/ansible-middleware-ee:latest
+          echo "${{ secrets.QUAY_ROBOT_TOKEN }}" | podman login quay.io -u="ansible-middleware+foo" --password-stdin
+          podman push quay.io/ansible-middleware/ansible-middleware-ee:${{ steps.get_version.outputs.TAG_VERSION }}
+          podman push quay.io/ansible-middleware/ansible-middleware-ee:latest
 
       - name: Run ansible-navigator with pulled image
         run: |
-          cd test/
-          pip install ansible-core ansible-navigator
-          ansible-navigator run keycloak.yml -i inventory --pull-policy always --eei quay.io/ansible-middleware/ansible-middleware-ee:latest -mstdout
+          ansible-navigator run keycloak.yml -i inventory --pull-policy always --eei quay.io/ansible-middleware/ansible-middleware-ee:latest -m stdout
+        working-directory: test
 
       - name: Publish Release
         uses: softprops/action-gh-release@v1
@@ -54,4 +53,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           files: "*.tar.gz"
-          body: "Release ${{ steps.get_version.outputs.TAG_VERSION }}"         
+          body: "Release ${{ steps.get_version.outputs.TAG_VERSION }}"
