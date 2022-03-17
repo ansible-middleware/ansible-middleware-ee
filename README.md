@@ -16,3 +16,6 @@ Password: <quay.io_token>
 
 ## Usage
 
+Short tutorial showing the whole procedure to deploy keycloak on a kvm/qemu virtual machine using ansible-navigator and ansible-middleware-ee:
+
+[![asciicast](https://asciinema.org/a/477628.png)](https://asciinema.org/a/477628?autoplay=1)
