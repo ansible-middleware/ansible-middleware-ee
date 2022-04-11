@@ -9,4 +9,4 @@
         name: middleware_automation.keycloak.keycloak
         tasks_from: prereqs.yml
       vars:
-        keycloak_admin_password: "changeme"
+        keycloak_admin_password: "remembertochangeme"
