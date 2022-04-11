@@ -6,7 +6,7 @@ collections:
   - name: middleware_automation.infinispan
     version: "==1.0.1"
   - name: middleware_automation.keycloak
-    version: "==1.0.0"
+    version: "==1.0.2"
   - name: middleware_automation.wildfly
     version: "==1.0.1"
   - name: middleware_automation.jws
