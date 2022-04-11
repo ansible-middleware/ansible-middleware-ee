@@ -2,6 +2,7 @@
 collections:
   - name: community.general
   - name: ansible.posix
+  - name: ansible.netcommon
   - name: middleware_automation.infinispan
     version: "==1.0.1"
   - name: middleware_automation.keycloak
