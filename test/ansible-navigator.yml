@@ -1,18 +1,13 @@
 ---
 ansible-navigator:
-
   ansible:
     config: ./ansible.cfg
     playbook: test.yml
-
   execution-environment:
     container-engine: podman
     enabled: True
     image: quay.io/ansible-middleware/ansible-middleware-ee:latest
-    pull-policy: always
-
   logging:
     level: info
-
   playbook-artifact:
     enable: False

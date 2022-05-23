@@ -1,0 +1,10 @@
+---
+- name: Playbook for AMQ Hosts
+  hosts: amq
+  collections:
+    - middleware_automation.amq
+  tasks:
+    - name: Include amq_broker role
+      ansible.builtin.include_role:
+        name: middleware_automation.amq.amq_broker
+        tasks_from: prereqs.yml
