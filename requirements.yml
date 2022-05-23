@@ -9,6 +9,7 @@ collections:
     version: "==1.0.2"
   - name: middleware_automation.wildfly
     version: "==1.0.1"
+  - name: middleware_automation.amq
   - name: middleware_automation.jws
   - name: middleware_automation.redhat_csp_download
   - name: middleware_automation.jcliff
