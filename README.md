@@ -5,14 +5,33 @@ Execution Environment providing middleware automation collections
 
 ## Installation
 
-Login into container registry and install with ansible-navigator:
+Install with ansible-navigator:
 
 ```
-# podman login quay.io -u='<quay.io_user'
-Password: <quay.io_token>
-
 # ansible-navigator --eei quay.io/ansible-middleware/ansible-middleware-ee:latest
 ```
+
+Sample config for ansible-navigator taken from our tests:
+
+```
+
+---
+ansible-navigator:
+  ansible:
+    config:
+      path: ./ansible.cfg
+    playbook:
+      path: test.yml
+  execution-environment:
+    container-engine: podman
+    enabled: true
+    image: quay.io/ansible-middleware/ansible-middleware-ee:latest
+  logging:
+    level: info
+  playbook-artifact:
+    enable: false
+```
+
 
 ## Usage
 
