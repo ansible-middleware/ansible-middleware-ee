@@ -9,6 +9,6 @@
         name: middleware_automation.infinispan.infinispan
         tasks_from: prereqs.yml
       vars:
-        supervisor_password: "remembertochangeme"
+        infinispan_supervisor_password: "remembertochangeme"
         infinispan_users:
           - { name: 'testuser', password: 'test', roles: 'observer' }
