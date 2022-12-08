@@ -4,15 +4,15 @@ collections:
   - name: ansible.posix
   - name: ansible.netcommon
   - name: middleware_automation.infinispan
-    version: "==1.0.3"
-  - name: middleware_automation.keycloak
-    version: "==1.0.6"
-  - name: middleware_automation.wildfly
-    version: "==1.0.5"
-  - name: middleware_automation.amq
-    version: "==1.0.0"
-  - name: middleware_automation.jws
     version: "==1.1.1"
+  - name: middleware_automation.keycloak
+    version: "==1.0.7"
+  - name: middleware_automation.wildfly
+    version: "==1.2.1"
+  - name: middleware_automation.amq
+    version: "==1.1.0"
+  - name: middleware_automation.jws
+    version: "==1.2.3"
   - name: middleware_automation.redhat_csp_download
     version: "==1.2.2"
   - name: middleware_automation.jcliff
