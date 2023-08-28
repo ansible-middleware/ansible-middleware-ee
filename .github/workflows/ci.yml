@@ -23,7 +23,7 @@ jobs:
 
       - uses: actions/setup-python@v4
         with:
-          python-version: "3.9"
+          python-version: "3.11"
           cache: 'pip'
 
       - name: Install dependencies
@@ -32,13 +32,16 @@ jobs:
           sudo apt-get -y install podman
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install ansible-core ansible-navigator[ansible-core]
+          pip install ansible-core==2.14.2 ansible-navigator[ansible-core] ansible-runner==2.3.1
 
       - name: Build EE with Podman
         run: |
+          ansible-builder --version
           ansible-builder build -v3 -c . -t ansible-middleware-ee:test --container-runtime=podman
 
       - name: Run ansible-navigator with local image
         run: |
+          ansible-navigator --version
+          ansible-navigator collections --eei ansible-middleware-ee:test -m stdout
           ansible-navigator run test.yml -i inventory --pull-policy never --eei ansible-middleware-ee:test -m stdout
         working-directory: test
