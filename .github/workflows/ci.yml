@@ -42,6 +42,5 @@ jobs:
       - name: Run ansible-navigator with local image
         run: |
           ansible-navigator --version
-          ansible-navigator collections --eei ansible-middleware-ee:test -m stdout
           ansible-navigator run test.yml -i inventory --pull-policy never --eei ansible-middleware-ee:test -m stdout
         working-directory: test
