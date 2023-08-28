@@ -10,11 +10,11 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: actions/setup-python@v4
         with:
-          python-version: "3.9"
+          python-version: "3.11"
           cache: 'pip'
 
       - name: Get Tag Version
@@ -27,7 +27,7 @@ jobs:
           sudo apt-get -y install podman
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install ansible-core ansible-navigator[ansible-core]
+          pip install ansible-core>=2.15.0 ansible-navigator
 
       - name: Build image
         run: |
